@@ -1,6 +1,6 @@
 # 📊 **Energy Community Model using Calliope**
 
-> **"Optimizing grid flexibility, renewable energy integration, and cost efficiency for energy communities in urban areas."**
+> **"Optimizing affordability, sustainability, and security for energy communities in urban areas."**
 
 ---
 
