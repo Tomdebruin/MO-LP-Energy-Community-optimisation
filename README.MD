@@ -39,6 +39,8 @@ The thesis addresses challenges related to **grid congestion**, **energy afforda
 - **Python:** Preprocessing, analysis, and visualization.  
 - **Plotly:** Interactive dashboards for result visualization.
 
+![REC Model](model_config/REC.png "REC Model Diagram")
+
 ---
 
 ## 📂 **Repository Structure**
