@@ -72,8 +72,8 @@ scenarios.yaml      # Core scenarios that can be used
 ### **1. Prerequisites**
 
 Make sure you have the following tools installed:
-- **Python 3.8+**
-- **Calliope**
+- **Python 12.0+**
+- **Calliope V7.0+**
 - **Pandas**
 - **Xarray**
 - **Plotly**
