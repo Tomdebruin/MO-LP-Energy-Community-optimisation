@@ -1,0 +1,33 @@
+#5.5. Transmission
+
+techs:
+  transmission_transformer_sink:
+    template: power_lines
+    from: grid_sink
+    to: transformer
+    flow_cap_max: .inf
+
+  transmission_e1_1:
+    template: power_lines
+    from: transformer
+    to: e1_1
+
+  transmission_e1_2:
+    template: power_lines
+    from: transformer
+    to: e1_2
+
+  transmission_e1_3:
+    template: power_lines
+    from: transformer
+    to: e1_3
+
+  transmission_e1_4:
+    template: power_lines
+    from: transformer
+    to: e1_4
+
+  transmission_e2_1:
+    template: power_lines
+    from: transformer
+    to: e2_1

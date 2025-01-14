@@ -1,0 +1,69 @@
+import: #We import all the yaml files from the model_config
+  - "model_config/techs.yaml" 
+  - "model_config/locations.yaml" 
+  - "model_config/transmissions.yaml"
+  - "model_config/templates.yaml"
+  - "scenarios.yaml"
+
+config:
+  init:
+    name: Generic Urban Community 
+    calliope_version: 0.7.0 #Intended version of Calliope
+    time_subset: ["2023-01-01", "2023-12-31"]  # Subset of timestep
+
+  build:
+    ensure_feasibility: false # Switches on the "unmet demand" constraint
+    mode: plan # Choices: plan, operate
+
+  solve:
+    solver: gurobi
+    zero_threshold: 1e-10 # Any value coming out of the backend that is smaller than this (due to floating point errors, probably) will be set to zero
+
+    solver_options:
+      Threads: 6
+      Method: 2 # use barrier, but do not run simplex in parallel
+      Crossover: 0 # stop after barrier, do not perform crossover
+      FeasibilityTol: 1e-3
+      OptimalityTol: 1e-4
+      BarConvTol: 1e-4
+
+parameters:
+  objective_cost_weights:
+    data: [0.6536, 0.1673, 0.1791]
+    index: [monetary, co2_emissions, transformer_congestion_indicator] #transformer_burden?
+    dims: costs
+  bigM: 1e6
+
+data_sources: 
+  demand_power:
+    source: data_sources/load_profiles.csv
+    rows: timesteps
+    columns: [nodes, techs]
+    add_dims:
+      parameters: sink_use_equals
+
+  pv_resource:
+    source: data_sources/pv_resource_2023.csv
+    rows: timesteps
+    columns:  [techs, scaler]
+    add_dims:
+      parameters: source_use_equals
+    select:
+      scaler: per_cap
+    drop: [scaler]
+  
+  price_data:
+    source: data_sources/price_day-ahead_2023.csv
+    columns: [techs, parameters, nodes]
+    rows: timesteps
+    add_dims:
+      costs: monetary
+  
+  transformer_data:
+    source: data_sources/transformer_congestion_factor.csv
+    columns: [techs, parameters, nodes]
+    rows: timesteps
+    add_dims:
+      costs: transformer_congestion_indicator # add description
+
+      

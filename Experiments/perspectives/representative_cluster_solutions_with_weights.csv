@@ -1,0 +1,5 @@
+Cluster,Representative_File,weight_monetary,weight_co2,weight_transformer_congestion
+0,run_wm0p72654_wc0p13867_wt0p13479.nc,0.72654,0.13867,0.13479
+1,run_wm0p42944_wc0p14551_wt0p42504.nc,0.42944,0.14551,0.42504
+2,run_wm0p5735_wc0p23298_wt0p19352.nc,0.5735,0.23298,0.19352
+3,run_wm0p85633_wc0p09831_wt0p04535.nc,0.85633,0.09831,0.04535

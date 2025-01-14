@@ -1,0 +1,241 @@
+#To create a combination of overrides, use the scenarios function.
+
+scenarios:
+
+  #Quick Calls
+  base: [base_setting]
+  week: [time_summer_week]
+  year: [time_year]
+  
+
+  # Perspective Analysis
+
+  perspective_dso: [time_year, dso]
+  perspective_rec_particpant: [time_year, rec_particpant]
+  perspective_municipality: [time_year, municipality]
+  perspective_aggregator: [time_year, aggregator]
+  perspective_base: [base_setting]
+
+  perspective_4clusters_0: [time_year, cluster_0]
+  perspective_4clusters_1: [time_year, cluster_1]
+  perspective_4clusters_2: [time_year, cluster_2]
+  perspective_4clusters_3: [time_year, cluster_3]
+
+  perspective_5clusters_0: [time_year, cluster_0_5]
+  perspective_5clusters_1: [time_year, cluster_1_5]
+  perspective_5clusters_2: [time_year, cluster_2_5]
+  perspective_5clusters_3: [time_year, cluster_3_5]
+  perspective_5clusters_4: [time_year, cluster_4_5]
+
+  # Sensitivity Analysis
+
+  sensitivity_base: [base_setting]
+
+  #Perspective Sensitivity Scenarios
+  sensitivity_affordable: [time_year, affordable_extreme]
+  sensitivity_sustainable: [time_year, sustainable_extreme]
+  sensititivy_secure: [time_year, secure_extreme]
+
+  # 💰 Price Sensitivity Scenarios
+  sensitivity_price_fixed_b0_27_s0_13: [base_setting, price_fixed_b0_27_s0_13]
+  sensitivity_price_fixed_b0_27_s0_03: [base_setting, price_fixed_b0_27_s0_03]
+  sensitivity_price_fixed_retail_b0_27_s0_27: [base_setting, price_fixed_retail_b0_27_s0_27]
+  sensitivity_price_fixed_retail_b0_27_s_day_ahead: [base_setting, price_fixed_retail_b0_27_s_day_ahead]
+  sensitivity_price_fixed_retail_b_day_ahead_s0_13: [base_setting, price_fixed_retail_b_day_ahead_s0_13]
+  sensitivity_price_fixed_retail_b_day_ahead_s0_03: [base_setting, price_fixed_retail_b_day_ahead_s0_03]
+
+  # 🔌 Transformer Size Sensitivity Scenarios
+  sensitivity_transformer_size_1: [base_setting, transformer_size_1]
+  sensitivity_transformer_size_100: [base_setting, transformer_size_100]
+  sensitivity_transformer_size_200: [base_setting, transformer_size_200]
+  sensitivity_transformer_size_800: [base_setting, transformer_size_800]
+  sensitivity_transformer_size_1200: [base_setting, transformer_size_1200]
+
+  # ☀️ PV Capacity Sensitivity Scenarios
+  sensitivity_pv_capacity_zero: [base_setting, pv_capacity_zero]
+  sensitivity_pv_capacity_120: [base_setting, pv_capacity_120]
+  sensitivity_pv_capacity_400: [base_setting, pv_capacity_400]
+  sensitivity_pv_capacity_800: [base_setting, pv_capacity_800]
+  sensitivity_pv_capacity_inf: [base_setting, pv_capacity_inf]
+
+  # 🔌 Electrification Sensitivity Scenarios
+  sensitivity_electrification_low: [base_setting, electrification_low]
+  sensitivity_electrification_high: [base_setting, electrification_high]
+  sensitivity_electrification_projection_1: [base_setting, electrification_projection_1]
+  sensitivity_electrification_projection_2: [base_setting, electrification_projection_2]
+
+  # 🔋 Battery Price Sensitivity Scenarios
+  sensitivity_battery_price_500: [base_setting, battery_price_500]
+  sensitivity_battery_price_250: [base_setting, battery_price_250]
+  sensitivity_battery_price_100: [base_setting, battery_price_100]
+  sensitivity_battery_price_1: [base_setting, battery_price_1]
+
+  sensitivity_battery_capacity_1: [base_setting, battery_capacity_1]
+  sensitivity_battery_capacity_200: [base_setting, battery_capacity_200]
+  sensitivity_battery_capacity_400: [base_setting, battery_capacity_400]
+  sensitivity_battery_capacity_600: [base_setting, battery_capacity_600]
+  sensitivity_battery_capacity_800: [base_setting, battery_capacity_800]
+  
+  sensitivity_battery_central_capacity_1: [base_setting, battery_central_capacity_1]
+  sensitivity_battery_central_capacity_200: [base_setting, battery_central_capacity_200]
+  sensitivity_battery_central_capacity_400: [base_setting, battery_central_capacity_400]
+  sensitivity_battery_central_capacity_600: [base_setting, battery_central_capacity_600]
+  sensitivity_battery_central_capacity_800: [base_setting, battery_central_capacity_800]
+
+#Overrides can be defined below. 
+
+overrides:
+  #base
+  base_setting:
+    config.init.time_subset: ["2023-01-01", "2023-12-31"]
+    parameters.objective_cost_weights.data: [0.6536, 0.1673, 0.1791] 
+ 
+  #time
+  time_summer_week:
+    config.init.time_subset: ["2023-08-01", "2023-08-06"]
+  time_winter_week:
+    config.init.time_subset: ["2023-01-01", "2023-01-06"]
+  time_year:
+    config.init.time_subset: ["2023-01-01", "2023-12-31"]
+ 
+
+  #perspectives
+  dso:
+    parameters.objective_cost_weights.data: [0.3, 0.1, 0.6]
+  rec_particpant:
+    parameters.objective_cost_weights.data: [0.65, 0.3, 0.05]
+  municipality:
+    parameters.objective_cost_weights.data: [0.3, 0.5, 0.2]
+  aggregator:
+    parameters.objective_cost_weights.data: [0.6, 0.1, 0.3]
+
+  #4 clusters:
+  cluster_0:
+    parameters.objective_cost_weights.data: [0.72654, 0.13867, 0.13479]
+  cluster_1:
+    parameters.objective_cost_weights.data: [0.42944, 0.14551, 0.42504]
+  cluster_2:
+    parameters.objective_cost_weights.data: [0.5735, 0.23298, 0.19352]
+  cluster_3:
+    parameters.objective_cost_weights.data: [0.85633, 0.09831, 0.04535]
+
+  #5 clusters
+  cluster_0_5:
+    parameters.objective_cost_weights.data: [0.63855, 0.23683, 0.12462]
+  cluster_1_5:
+    parameters.objective_cost_weights.data: [0.7559, 0.12126, 0.12284]
+  cluster_2_5:
+    parameters.objective_cost_weights.data: [0.42944, 0.14551, 0.42504]
+  cluster_3_5:
+    parameters.objective_cost_weights.data: [0.5735, 0.23298, 0.19352]
+  cluster_4_5:
+    parameters.objective_cost_weights.data: [0.85137, 0.12971, 0.01893]
+
+
+  #sensitivity
+
+  #extreme scenarios
+  affordable_extreme:
+    parameters.objective_cost_weights.data: [0.933, 0.033, 0.033] # -1219.751159	134937.5869	464890.174
+  sustainable_extreme:  
+    parameters.objective_cost_weights.data: [0.033, 0.933, 0.033] # 143720.4255	39994.67372	39332.23716
+  secure_extreme:
+    parameters.objective_cost_weights.data: [0.033, 0.033, 0.933] #  139618.6106	41690.12461	36795.08441
+  
+  #price sensitivity
+  price_fixed_b0_27_s0_13:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_fixed_retail_high_sell.csv
+
+  price_fixed_b0_27_s0_03:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_fixed_retail_low_sell.csv
+
+  price_fixed_retail_b0_27_s0_27:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_fixed_retail_mirror_sell.csv
+
+  price_fixed_retail_b0_27_s_day_ahead:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_fixed_retail_variable_sell.csv
+
+  price_fixed_retail_b_day_ahead_s0_13:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_variable_high_sell.csv
+
+  price_fixed_retail_b_day_ahead_s0_03:
+    data_sources.price_data.source: Experiments/sensitivity/senstivity_data_sources/price_variable_low_sell.csv
+
+  #transformer size
+  transformer_size_1:
+    techs.transformer_in.flow_cap_max: 1
+    techs.transformer_out.flow_cap_max: 1
+
+  transformer_size_100:
+    techs.transformer_in.flow_cap_max: 100
+    techs.transformer_out.flow_cap_max: 100
+
+  transformer_size_200:
+    techs.transformer_in.flow_cap_max: 200
+    techs.transformer_out.flow_cap_max: 200
+
+  transformer_size_800: 
+    techs.transformer_in.flow_cap_max: 800
+    techs.transformer_out.flow_cap_max: 800
+
+  transformer_size_1200:
+    techs.transformer_in.flow_cap_max: 1200
+    techs.transformer_out.flow_cap_max: 1200
+  
+  #max pv capacity
+  pv_capacity_zero:
+    techs.solar_power.flow_cap_max: 0
+
+  pv_capacity_120:
+    techs.solar_power.flow_cap_max: 120
+  
+  pv_capacity_400:
+    techs.solar_power.flow_cap_max: 480
+
+  pv_capacity_inf:
+    techs.solar_power.flow_cap_max: .inf 
+
+  pv_capacity_800:
+    techs.solar_power.flow_cap_min_systemwide: 800
+
+  #demand senstivity
+  electrification_low:
+    data_sources.demand_power.source: Experiments/sensitivity/senstivity_data_sources/load_profiles_low_electrification.csv
+
+  electrification_high:
+    data_sources.demand_power.source: Experiments/sensitivity/senstivity_data_sources/load_profiles_high_electrification.csv
+
+  #add extra projections
+
+  #battery sensitivity
+  battery_price_500:
+    techs.battery.cost_storage_cap.data: 500
+  battery_price_250:
+    techs.battery.cost_storage_cap.data: 250
+  battery_price_100:
+    techs.battery.cost_storage_cap.data: 100
+  battery_price_1:
+    techs.battery.cost_storage_cap.data: 1
+
+  #battery structure (flow cap)
+  battery_capacity_1:
+    techs.battery.flow_cap_max_systemwide: 1
+  battery_capacity_200:
+    techs.battery.flow_cap_min_systemwide: 200
+  battery_capacity_400:
+    techs.battery.flow_cap_min_systemwide: 400
+  battery_capacity_600:
+    techs.battery.flow_cap_min_systemwide: 600
+  battery_capacity_800:
+    techs.battery.flow_cap_min_systemwide: 800
+
+  battery_central_capacity_1:
+    techs.battery_central.flow_cap_max_systemwide: 1
+  battery_central_capacity_200:
+    techs.battery_central.flow_cap_min_systemwide: 200
+  battery_central_capacity_400:
+    techs.battery_central.flow_cap_min_systemwide: 400
+  battery_central_capacity_600:
+    techs.battery_central.flow_cap_min_systemwide: 600
+  battery_central_capacity_800:
+    techs.battery_central.flow_cap_min_systemwide: 800

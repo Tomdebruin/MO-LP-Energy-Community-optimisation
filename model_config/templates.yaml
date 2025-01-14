@@ -1,0 +1,46 @@
+# We add templates for cleanliness of the model configuration. These can be refered to. 
+
+templates:
+    
+  #Transmission template
+  power_lines:
+    name: "Electrical power distribution"
+    color: "#6783E3"
+    base_tech: transmission
+    inherit: interest_rate_setter
+    carrier_in: power
+    carrier_out: power
+    flow_cap_max: 720 # 40 * 18A
+  
+  #Household template
+  techs_consumers:
+    techs: 
+      demand_power:
+      battery:
+      pv:
+      curtailment:
+      solar_power:
+
+  #Financial template
+  interest_rate_setter:
+    cost_interest_rate:
+      data: 0.05
+      index: monetary
+      dims: costs
+
+#Colours 
+# Core Purples:
+# Core Purple 1: #a100ff
+# Core Purple 2: #7500c0
+# Core Purple 3: #460073
+# Accent Purples:
+# Accent Purple 1: #b455aa
+# Accent Purple 2: #a055f5
+# Accent Purple 3: #be82ff
+# Accent Purple 4: #dcafff
+# Accent Purple 5: #e6dcff
+# Neutral Colors:
+# Black: #000000
+# Dark Gray: #96968c
+# Light Gray: #e6e6dc
+# White: #ffffff

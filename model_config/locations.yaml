@@ -1,0 +1,33 @@
+#Conceptualisation - Locations 
+
+#5.6 Locations 
+
+nodes:
+
+  #5.6.1. Prosumer Nodes:
+
+  e1_1:
+    template: techs_consumers
+  e1_2:
+    template: techs_consumers
+  e1_3:
+    template: techs_consumers
+  e1_4:
+    template: techs_consumers
+  
+  e2_1:
+    template: techs_consumers
+    
+  #5.6.2. Transformer Node:
+  transformer: 
+    techs:
+      supply_grid_power:
+      sell_grid_power:
+      transformer_in:
+      transformer_out:
+      battery_central:
+  
+  #Unmet demand: 
+  grid_sink:
+    techs:
+      unmet_demand:

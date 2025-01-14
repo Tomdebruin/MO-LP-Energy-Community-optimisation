@@ -1,0 +1,165 @@
+# Conceptualisation - Technologies
+
+# Core Purples:
+# 1. Core Purple 1: #a100ff
+# 2. Core Purple 2: #7500c0
+# 3. Core Purple 3: #460073
+
+# Accent Purples:
+# 1. Accent Purple 1: #b455aa
+# 2. Accent Purple 2: #a055f5
+# 3. Accent Purple 3: #be82ff
+# 4. Accent Purple 4: #dcafff
+# 5. Accent Purple 5: #e6dcff
+
+# Neutral Colors:
+# 1. Black: #000000
+# 2. Dark Gray: #96968c
+# 3. Light Gray: #e6e6dc
+# 4. White: #ffffff
+
+# Technologies and Colors
+
+techs:
+
+  # 5.1 Supply
+
+  supply_grid_power:
+    name: "Grid import"
+    color: "#6E42A1"  # Dark Gray
+    base_tech: supply
+    carrier_out: power_MV
+    source_use_max: .inf
+    flow_cap_max: .inf
+    lifetime: 25
+    cost_flow_out:
+      data: 0.37
+      index: co2_emissions
+      dims: costs
+
+  solar_power:
+    name: "Solar power"
+    color: "#a100ff"  # Core Purple 1
+    base_tech: supply
+    carrier_out: power_pv
+    source_unit: per_cap
+    flow_out_parasitic_eff: 0.9  # inverter losses
+    flow_cap_max: 240  # kw per node = 6kw * 40 households
+    lifetime: 25
+    cost_flow_cap:
+      data: 200  # $/kw
+      index: monetary
+      dims: costs
+
+  unmet_demand:
+    name: "Unmet demand"
+    color: "#d62128"  # Red
+    base_tech: supply
+    carrier_out: power
+    source_use_max: .inf
+    flow_cap_max: .inf
+    lifetime: .inf
+    cost_flow_out:
+      data: 1000000000
+      index: monetary
+      dims: costs
+
+  # 5.2 Demand
+
+  demand_power:
+    name: "Power demand"
+    color: "#000000"  # Black
+    base_tech: demand
+    carrier_in: power
+
+  sell_grid_power:
+    name: "Grid export"
+    color: "#4B286D"  # Dark Purple
+    base_tech: demand
+    carrier_in: power_MV
+    flow_cap_max: .inf
+
+  curtailment:
+    name: "Curtailment"
+    color: "#dcafff"  # Accent Purple 4
+    base_tech: demand
+    carrier_in: power_pv
+    cost_flow_out:
+      data: 0
+      index: monetary
+      dims: costs 
+
+  # 5.3 Conversion
+
+  transformer_in:
+    name: "Transformer in"
+    color: "#756584"  # Muted Purple-Gray
+    base_tech: conversion
+    carrier_in: power_MV
+    carrier_out: power
+    flow_in_eff: 0.95
+    flow_out_eff: 0.95
+    flow_cap_max: 400
+    lifetime: 25
+
+  transformer_out:
+    name: "Transformer out"
+    color: "#756584"  # Muted Purple-Gray
+    base_tech: conversion
+    carrier_in: power
+    carrier_out: power_MV
+    flow_in_eff: 0.95
+    flow_out_eff: 0.95
+    flow_cap_max: 400
+    lifetime: 25    
+
+  pv:
+    name: "PV"
+    color: "#7500c0"  # Core Purple 2
+    base_tech: conversion
+    carrier_in: power_pv
+    carrier_out: power
+    flow_in_eff: 1
+    flow_out_eff: 1
+    flow_cap_max: .inf
+    lifetime: .inf
+
+  # 5.4 Storage
+
+  battery:
+    name: 'Battery storage'
+    color: "#be82ff"  # Accent Purple 3
+    base_tech: storage
+    carrier_in: power
+    carrier_out: power
+    flow_cap_max: .inf
+    storage_cap_max: .inf
+    storage_discharge_depth: 0.01
+    lifetime: 15  # 8000 charge cycles
+    flow_cap_per_storage_cap_max: 0.25 #takes four hours for discharging 
+    flow_out_eff: 0.95
+    flow_in_eff: 0.95
+    storage_loss: 0.01  # 1% loss per hour assumed
+    cost_storage_cap:
+      data: 750  # $/kwh
+      index: monetary
+      dims: costs
+
+  battery_central:
+    name: 'Battery storage'
+    color: "#93115f"  # Dark Magenta
+    base_tech: storage
+    carrier_in: power_MV
+    carrier_out: power_MV
+    flow_cap_max: .inf
+    storage_cap_max: .inf
+    storage_discharge_depth: 0.01
+    lifetime: 15  # 8000 charge cycles
+    flow_cap_per_storage_cap_max: 0.25
+    flow_out_eff: 0.95
+    flow_in_eff: 0.95
+    storage_loss: 0.01  # 1% loss per hour assumed
+    cost_storage_cap:
+      data: 500  # $/kwh
+      index: monetary
+      dims: costs
