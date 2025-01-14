@@ -6,18 +6,18 @@
 
 ## 📚 **Project Overview**
 
-This repository contains the **Energy Community Model** developed as part of my **master's thesis** at **Delft University of Technology (TU Delft)** in collaboration with **Accenture**. The model uses **Calliope**, an open-source energy system modeling framework, to optimize energy distribution, reduce costs, and integrate renewable energy in urban energy systems in the Netherlands.
+This repository contains the **Energy Community Model** developed as part of my **master's thesis** at **Delft University of Technology (TU Delft)** in collaboration with **Accenture**. The model employs **Calliope**, an open-source energy system modeling framework, to optimize energy distribution, reduce costs, and integrate renewable energy in urban energy systems in the Netherlands.
 
-The thesis addresses challenges related to **grid congestion**, **energy affordability**, and **sustainability** while exploring the potential of **energy communities** to make better use of existing infrastructure.
+The thesis addresses challenges related to **grid congestion**, **energy affordability**, and **sustainability** while exploring the potential of **energy communities** to improve the use of existing infrastructure.
 
 ---
 
 ## 🎯 **Objectives**
 
-- **Optimize Grid Flexibility:** Reduce grid congestion through smarter energy distribution.  
-- **Cost Efficiency:** Lower energy costs for households and stakeholders.  
-- **Renewable Energy Integration:** Maximize the use of solar and battery technologies.  
-- **Scalability:** Adapt the model for neighborhoods and industrial districts.  
+- **Optimize Grid Flexibility:** Mitigate grid congestion through efficient energy distribution.
+- **Cost Efficiency:** Minimize energy costs for participants in energy communities.
+- **Renewable Energy Integration:** Maximize the deployment and use of PV systems and batteries.
+- **Scalability:** Adapt to both neighborhoods and industrial districts.
 - **Scenario Analysis:** Explore trade-offs between affordability, sustainability, and grid security.
 
 ---
@@ -25,46 +25,45 @@ The thesis addresses challenges related to **grid congestion**, **energy afforda
 ## 🛠️ **Model Description**
 
 ### **Core Components**
-- **Technologies:** Solar panels (PV), batteries (distributed and central), transformers, grid connections.  
-- **Actors:** Distributed System Operators (DSO), Aggregators, Municipalities, Households.  
-- **Scenarios:** Sensitivity scenarios addressing transformer sizes, PV capacity, energy pricing models, and battery costs.  
+- **Technologies:** Solar PV, distributed and central batteries, transformers, and grid connections.
+- **Actors:** DSOs, aggregators, municipalities, and households.
+- **Scenarios:** Sensitivity scenarios address transformer sizes, PV capacity, energy pricing models, and battery costs.
 
-### **Optimization Goals**
-- Minimize grid congestion.  
-- Optimize energy costs.  
-- Maximize renewable energy penetration.  
+### **Optimization Framework**
+- The model optimizes grid flexibility, operational costs, and CO₂ emissions via **multi-objective linear programming (MO-LP)**.
+- Built using **2023 data**, focusing on urban energy systems.
 
 ### **Software Tools**
-- **Calliope:** Energy system optimization.  
-- **Python:** Preprocessing, analysis, and visualization.  
-- **Plotly:** Interactive dashboards for result visualization.
+- **Calliope:** For energy system optimization.
+- **Python:** For preprocessing, analysis, and visualization.
+- **Jupyter Dashboards:** For interactive result exploration.
 
-![REC Model](model_config/REC.png "REC Model Diagram")
+![REC Model](model_config/REC.png "Renewable Energy Community Diagram")
 
 ---
 
 ## 📂 **Repository Structure**
 
 ```plaintext
-📁 /model_config
-    ├── scenarios.yaml      # Definition of sensitivity scenarios
-    ├── techs.yaml          # Technology specifications
-    ├── locations.yaml      # Node and actor spatial distribution
-    ├── templates.yaml      # Templates used for clarity
-
-📁 /Experiments
-    ├── 
-
-📁 /docs
-    ├── thesis.pdf          # Thesis report (final version)
-
+📄    Dashboard.ipynb       # Interactive dashboard for general plots
 📁 /data_sources
-    ├── data_sources/       # Raw and preprocessed data for the model
+    ├── demand_profiles.csv    # Energy demand profiles
+    ├── price_day-ahead_2023.csv # Energy price data (day-ahead)
+    ├── transformer_congestion_factor.csv # Transformer strain data
+📁 /Experiments
+    ├── General_plots.ipynb     # Generate plots for visualization
+    📂 pareto_fronts            # Results from Pareto front experiments
+    📂 perspectives             # Experiments on stakeholder perspectives
+    📂 sensitivity              # Sensitivity analysis results
+📁 /model_config
+    ├── locations.yaml         # Node and actor spatial data
+    ├── techs.yaml             # Technology configurations
+    ├── templates.yaml         # Standardised templates for tech paramters
+    ├── transmissions.yaml     # Electricity cables between locations
 
-Dashboard.ipynb     # Interactive dashboard for analysis
-model.yaml          # Core Calliope model configuration
-scenarios.yaml      # Core scenarios that can be used
-📄 README.md        # Documentation for the project
+📄 scenarios.yaml              # Scenario overrides for experiments
+📄 model.yaml                  # Core model definition
+📄 README.md                   # Project documentation
 ```
 
 ---
@@ -73,119 +72,81 @@ scenarios.yaml      # Core scenarios that can be used
 
 ### **1. Prerequisites**
 
-Make sure you have the following tools installed:
-- **Python 12.0+**
-- **Calliope V7.0+**
-- **Pandas**
-- **Xarray**
-- **Plotly**
+Ensure the following are installed:
+- **Python 3.8+**
+- **Calliope 0.6+**
+- Python libraries: `pandas`, `xarray`, `numpy`, `plotly`, `matplotlib`
 
-Install dependencies using:
+Install dependencies with:
 ```bash
-pip install calliope pandas xarray plotly numpy matplotlib
+pip install -r requirements.txt
 ```
 
 ---
 
-### **2. Model Configuration**
+### **2. Running the Model**
 
-Adjust parameters and scenarios:
-- Update **`model.yaml`** for core model settings.  
-- Modify **`scenarios.yaml`** for scenario-specific configurations.
+Run simulations by using the **files provided in the repository**. For example:
 
----
+1. Open the **`Dashboard.ipynb`** to explore general plots and results interactively.
+2. For sensitivity analysis or specific scenario runs, modify and execute files within the `/Experiments` folder:
+   - Use **`pareto_fronts`** for trade-offs between objectives.
+   - Use **`perspectives`** for stakeholder-focused simulations.
+   - Use **`sensitivity`** for exploring parameter variations.
 
-### **3. Run Scenarios**
-
-- Results are saved as **NetCDF files** 
-
----
-
-### **4. Analyze Results**
-
-Generate visualizations:
-- **Load Duration Curves:**
-    ```bash
-    python scripts/plot_duration_curves.py
-    ```
-- **Installed Capacity Plots:**
-    ```bash
-    python scripts/plot_installed_capacities.py
-    ```
-
-For interactive visualization:
-- **Installed Capacity Dashboard:**
-    ```bash
-    python scripts/installed_capacity_dashboard.py
-    ```
-- **Load Duration Curve Dashboard:**
-    ```bash
-    python scripts/load_duration_curve_dashboard.py
-    ```
+Results are automatically saved in the appropriate `/results/` subfolders.
 
 ---
 
-## 📊 **Key Outputs**
+### **3. Visualizing Results**
 
-- **NetCDF Files:** Scenario-specific results (`/results/sensitivity_analysis_runs`)  
-- **Load Duration Curves:** Sorted time-series flows for key technologies  
-- **Installed Capacity Plots:** Stacked bar charts showing capacity per technology  
-- **Summary CSV:** Aggregated scenario results (`/results/all_results.csv`)
+Use the interactive dashboard or Python notebooks for detailed analysis:
+- **Dashboard:** `Dashboard.ipynb`
+- **Pareto Fronts:** Visualize objective trade-offs in `/Experiments/pareto_fronts/`.
+- **Perspectives:** Stakeholder analyses are in `/Experiments/perspectives/`.
+
+For customized analysis:
+- Modify `scenarios.yaml` and run the model to generate tailored results.
 
 ---
 
-## 📈 **Scenario Overview**
+## 📊 **Scenario Analysis**
 
-### **Sensitivity Analysis Scenarios:**
-- Transformer sizes: **undersized**, **oversized**  
-- PV capacity: **undersized**, **oversized**  
-- Electrification: **high**, **low**  
-- Battery pricing: **medium**, **low**  
-- Energy pricing: **fixed high**, **fixed low**, **mirror**
+### **Sensitivity Scenarios:**
+- Transformer Sizes: **undersized**, **oversized**
+- PV Capacity: **low**, **high**
+- Energy Pricing: **fixed**, **day-ahead**
+- Electrification Levels: **low**, **high**
+- Battery Costs: **medium**, **low**
 
 ### **Objective Trade-offs:**
-- **Affordability**
-- **Sustainability**
-- **Grid Security**
+- **Affordability:** Cost optimization.
+- **Sustainability:** Maximizing renewable energy use.
+- **Grid Security:** Minimizing transformer congestion.
 
 ---
 
-## 📝 **Customization**
+## 🚦 **Limitations**
 
-1. **Add New Technologies:** Update `techs.yaml`.  
-2. **Modify Scenarios:** Adjust parameters in `scenarios.yaml`.  
-3. **Change Optimization Goals:** Update objective functions in `model.yaml`.  
-
----
-
-## 🚦 **Known Limitations**
-
-- **Network Details:** Limited visibility into low-voltage constraints.  
-- **Static Scenarios:** Limited dynamic adaptation over time.  
-- **Simplified Assumptions:** Some system dynamics are aggregated.
+1. **2023-Specific Data:** Results are calibrated to 2023 scenarios and may not generalize to other years.
+2. **No Low-Voltage Details:** The model abstracts away localized voltage or cable constraints.
+3. **Market Price Proxy:** Transformer congestion is approximated using day-ahead market prices.
 
 ---
 
 ## 🤝 **Contributing**
 
-Contributions are welcome!  
+Contributions are welcome! Please:
+1. Fork the repository.
+2. Create a new branch.
+3. Submit a pull request with your proposed changes.
 
 ---
 
 ## 📬 **Contact**
 
-**Tom de Bruin**  
-**Delft University of Technology**  
-**LINKEDIN:** [www.linkedin.com/in/tom-antonie-de-bruin]
+For questions or suggestions, please contact:
 
----
-
-## 🌍 **Acknowledgments**
-
-- **Accenture Utilities Team**  
-- **TU Delft Calliope Development Team**  
-
----
-
-**Happy Modeling! ⚡️📊**  
-**Let's optimize the energy future—together! 🌍🔋**
+- **Tom de Bruin**  
+- **TU Delft | Accenture**  
+- [LinkedIn](https://www.linkedin.com/in/tom-antonie-de-bruin)
