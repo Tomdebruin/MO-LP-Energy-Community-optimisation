@@ -74,7 +74,7 @@ The thesis addresses challenges related to **grid congestion**, **energy afforda
 
 Ensure the following are installed:
 - **Python 3.8+**
-- **Calliope 0.6+**
+- **Calliope 0.7+**
 - Python libraries: `pandas`, `xarray`, `numpy`, `plotly`, `matplotlib`
 
 Install dependencies with:
